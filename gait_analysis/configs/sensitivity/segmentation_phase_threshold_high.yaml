@@ -1,0 +1,2 @@
+segmentation:
+  hilbert_phase_threshold: 0.65

@@ -1,0 +1,543 @@
+.app-shell {
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px;
+  color: #1f2933;
+  background: linear-gradient(180deg, #f4f8fb 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+/* Sticky so the catalog status and Refresh stay reachable while scrolling
+   past three 420px graphs. */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 12px 0;
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(6px);
+}
+
+.page-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.catalog-status,
+.selection-metadata,
+.matrix-status,
+.status-text,
+.status-line {
+  color: #52606d;
+  font-size: 0.95rem;
+}
+
+.refresh-button,
+.download-button {
+  border: 0;
+  border-radius: 10px;
+  background: #0f6cbd;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.refresh-button:hover,
+.download-button:hover {
+  background: #0b5698;
+}
+
+.refresh-button:active,
+.download-button:active {
+  background: #094a83;
+}
+
+.refresh-button:disabled,
+.download-button:disabled {
+  background: #9aa5b1;
+  cursor: not-allowed;
+}
+
+/* These buttons set border:0, which removes the browser's default focus ring
+   on some engines; restore an explicit keyboard-visible one. */
+.refresh-button:focus-visible,
+.download-button:focus-visible,
+.number-input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #0f6cbd;
+  outline-offset: 2px;
+}
+
+.dashboard-tabs {
+  background: transparent;
+}
+
+.dashboard-tab,
+.dashboard-tab-selected {
+  background: transparent !important;
+  border-bottom: 3px solid transparent;
+  padding: 10px 16px;
+}
+
+.dashboard-tab-selected {
+  border-bottom-color: #0f6cbd;
+  font-weight: 700;
+}
+
+.workbench-shell,
+.overview-shell {
+  padding-top: 16px;
+}
+
+.chart-graph {
+  width: 100%;
+}
+
+.context-details > summary {
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.top-bar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.flip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #d9e2ec;
+}
+
+/* Preview is reversible, so it reads as a neutral action; committing rewrites
+   the run outputs, so it reads as the consequential one. */
+.flip-preview-button {
+  background: #52606d;
+}
+
+.flip-preview-button:hover {
+  background: #3e4c59;
+}
+
+.flip-commit-button {
+  background: #b42318;
+}
+
+.flip-commit-button:hover {
+  background: #8f1d13;
+}
+
+.flip-status {
+  flex-basis: 100%;
+  font-size: 0.85rem;
+}
+
+/* Reporting only appends to a log, so it reads as a caution rather than the
+   red of the commit that rewrites the run outputs. */
+.fault-report-button {
+  background: #b54708;
+}
+
+.fault-report-button:hover {
+  background: #93370d;
+}
+
+.fault-report-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(31, 41, 51, 0.45);
+}
+
+.fault-report-dialog {
+  width: min(480px, 100%);
+  max-height: 100%;
+  overflow: auto;
+  padding: 20px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(31, 41, 51, 0.3);
+}
+
+.fault-report-note {
+  box-sizing: border-box;
+  min-height: 96px;
+  resize: vertical;
+  font: inherit;
+}
+
+.fault-report-error {
+  color: #b42318;
+  min-height: 1.2em;
+}
+
+.fault-report-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.workbench-control-grid,
+.chart-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.workbench-control-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-bottom: 20px;
+}
+
+.chart-grid {
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+}
+
+.workbench-primary-plot {
+  margin-bottom: 20px;
+}
+
+.workbench-secondary-grid {
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+}
+
+.controls-card,
+.chart-card,
+.mode-card {
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 16px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
+  padding: 18px;
+  transition: box-shadow 0.18s ease;
+}
+
+/* Shadow only, deliberately no transform: a transform on an ancestor of a
+   plotly canvas creates a new containing block and causes resize artifacts. */
+.controls-card:hover,
+.chart-card:hover,
+.mode-card:hover {
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.chart-card-wide {
+  grid-column: 1 / -1;
+}
+
+.chart-card-primary {
+  width: 100%;
+}
+
+.chart-card-primary .chart-graph {
+  min-height: 640px;
+}
+
+.overview-controls {
+  margin-bottom: 18px;
+}
+
+.section-title,
+.chart-title,
+.mode-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.subsection-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.control-group {
+  margin-bottom: 12px;
+}
+
+.control-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.compact-label {
+  margin-bottom: 4px;
+}
+
+.number-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #bcccdc;
+}
+
+.inline-number-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.plot-kind-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 10px;
+}
+
+/* inline-flex + nowrap keeps each option wrapping as a whole chip; with nine
+   plot kinds the row wraps on narrower windows, and the default inline layout
+   would break in the middle of a label like "Inst. Frequency". */
+.plot-kind-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  margin-right: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #f0f4f8;
+  border: 1px solid #d9e2ec;
+}
+
+.download-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.te-summary {
+  min-height: 180px;
+}
+
+.mode-stack {
+  display: grid;
+  gap: 16px;
+}
+
+
+/* --- Data & Runs tab ------------------------------------------------------ */
+
+.pipeline-shell {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  padding-top: 16px;
+  align-items: start;
+}
+
+.jobs-card {
+  grid-column: 1 / -1;
+}
+
+.upload-drop {
+  border: 2px dashed #bcccdc;
+  border-radius: 12px;
+  padding: 26px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.upload-drop:hover {
+  border-color: #0f6cbd;
+  background: #f4f8fb;
+}
+
+.upload-link {
+  color: #0f6cbd;
+  text-decoration: underline;
+}
+
+.path-preview {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  background: #f4f8fb;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 8px;
+  word-break: break-all;
+}
+
+.preset-details {
+  margin-top: 10px;
+}
+
+.preset-details > summary {
+  cursor: pointer;
+}
+
+.preset-args {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  max-height: 220px;
+  overflow: auto;
+  background: #f8fafc;
+  border: 1px solid #d9e2ec;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.inline-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.danger-button {
+  background: #b42318;
+}
+
+.danger-button:hover {
+  background: #8f1d13;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.job-card {
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.job-meta {
+  color: #52606d;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.status-pill-queued {
+  background: #7b8794;
+}
+
+.status-pill-running {
+  background: #0f6cbd;
+}
+
+.status-pill-succeeded {
+  background: #157f3d;
+}
+
+.status-pill-failed {
+  background: #b42318;
+}
+
+.status-pill-cancelled {
+  background: #94684a;
+}
+
+.job-progress {
+  height: 10px;
+  background: #e4ecf5;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.job-progress-fill {
+  height: 100%;
+  background: #0f6cbd;
+  transition: width 0.4s ease;
+}
+
+.job-log {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  background: #f8fafc;
+  border: 1px solid #d9e2ec;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 16px;
+  }
+
+  .top-bar {
+    flex-direction: column;
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card-primary .chart-graph {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 900px) {
+  .pipeline-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .job-log {
+    max-height: 220px;
+  }
+}

@@ -1,0 +1,37 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # CPU-only PyTorch first (the default Linux wheel pulls in several GB of CUDA
+      # libraries); requirements.txt then sees torch as already satisfied.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+
+      # Registers the "python3" kernel that tests/test_rss.py uses to execute the
+      # validation notebook.
+      - name: Register Jupyter kernel
+        run: python -m ipykernel install --user --name python3
+
+      - name: Run tests
+        run: python -m pytest tests -q

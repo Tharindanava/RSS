@@ -1,0 +1,11 @@
+files: 1 - 6
+
+wrist: IMU10
+forearm: IMU2
+sholder: IMU6
+
+files: 7
+
+wrist: IMU7
+forearm: IMU2
+sholder: IMU6

@@ -1,0 +1,90 @@
+{
+    "test_number": 34,
+    "duration_seconds": 30.0,
+    "sample_rate_hz": 100.0,
+    "joints": {
+        "base": {
+            "status": "active",
+            "num_sines": 3,
+            "target_amplitude_deg": 60.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 2.8849167883491207,
+            "waves": [
+                {
+                    "frequency_hz": 0.060251617607955055,
+                    "phase_rad": 1.3255529455657633
+                },
+                {
+                    "frequency_hz": 0.08705361021328657,
+                    "phase_rad": 3.5859083667133897
+                },
+                {
+                    "frequency_hz": 0.06370400551050905,
+                    "phase_rad": 0.37778282338593894
+                }
+            ]
+        },
+        "shoulder": {
+            "status": "locked",
+            "home_pose_deg": 0.0
+        },
+        "elbow": {
+            "status": "active",
+            "num_sines": 4,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 2.075105403322711,
+            "waves": [
+                {
+                    "frequency_hz": 0.10797338224406398,
+                    "phase_rad": 3.9331115734411926
+                },
+                {
+                    "frequency_hz": 0.11167482767870446,
+                    "phase_rad": 1.5296996319061167
+                },
+                {
+                    "frequency_hz": 0.10092231872708234,
+                    "phase_rad": 4.075580871965433
+                },
+                {
+                    "frequency_hz": 0.09860356284141195,
+                    "phase_rad": 0.4087593864051817
+                }
+            ]
+        },
+        "wrist": {
+            "status": "active",
+            "num_sines": 5,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 1.8708946925134557,
+            "waves": [
+                {
+                    "frequency_hz": 0.07990343238757368,
+                    "phase_rad": 1.6405868462846183
+                },
+                {
+                    "frequency_hz": 0.0721401277167888,
+                    "phase_rad": 0.062351410455942
+                },
+                {
+                    "frequency_hz": 0.051324499483764496,
+                    "phase_rad": 3.0944838978003206
+                },
+                {
+                    "frequency_hz": 0.11268794435004748,
+                    "phase_rad": 4.71858518605988
+                },
+                {
+                    "frequency_hz": 0.05607230709596427,
+                    "phase_rad": 5.793515321825013
+                }
+            ]
+        },
+        "gripper": {
+            "status": "locked",
+            "home_pose_deg": 45.0
+        }
+    }
+}

@@ -1,0 +1,5 @@
+files: 1 - 7
+
+wrist: IMU4
+forearm: IMU7
+sholder: IMU3

@@ -1,0 +1,7 @@
+# NOTE: Part C replaced the classic+MFPCA+TE blended phenotype clustering with
+# per-node eigenfunction FPCA clustering (node_fpca.py / spectral_clustering.py),
+# which no longer calls phenotype.build_trial_phenotypes. This overlay's
+# exclude_families setting is now a silent no-op for the live pipeline.
+phenotype:
+  exclude_families: [classic, te]
+

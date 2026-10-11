@@ -1,0 +1,5 @@
+recording_id,reviewer,side,event_type,sample,time_seconds,accepted,comment
+rec_example,expert_01,left,IC,100,1.0,true,example schema row only
+rec_example,expert_01,left,TO,160,1.6,true,example schema row only
+rec_example,expert_01,left,MS,190,1.9,true,example schema row only
+

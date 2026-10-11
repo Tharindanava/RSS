@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the letter below."
+title: "RSS: Rotation Source Separation"
+type: software
+authors:
+  - family-names: Navarathne
+    given-names: Tharinda
+  - family-names: Adhikari
+    given-names: Sachintha
+  - family-names: Meghapathirana
+    given-names: Nadeera
+  - family-names: Godaliyadda
+    given-names: Roshan
+  - family-names: Ekanayake
+    given-names: Parakrama
+license: MIT
+# TODO once published: add `year`, `volume`, `start`/`end` pages and `doi` here,
+# and `repository-code` / `url` once the GitHub repository exists.
+preferred-citation:
+  type: article
+  title: "RSS: Rotation Source Separation"
+  journal: "IEEE Signal Processing Letters"
+  authors:
+    - family-names: Navarathne
+      given-names: Tharinda
+    - family-names: Adhikari
+      given-names: Sachintha
+    - family-names: Meghapathirana
+      given-names: Nadeera
+    - family-names: Godaliyadda
+      given-names: Roshan
+    - family-names: Ekanayake
+      given-names: Parakrama

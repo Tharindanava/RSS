@@ -1,0 +1,4 @@
+mfpca:
+  representation: timing_preserving
+  channel_weighting: equal
+

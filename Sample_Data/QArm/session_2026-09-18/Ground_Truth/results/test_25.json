@@ -1,0 +1,172 @@
+{
+    "test_number": 25,
+    "duration_seconds": 30.0,
+    "sample_rate_hz": 100.0,
+    "frequency_range_hz": [
+        0.05,
+        0.12
+    ],
+    "maximum_angular_velocity_deg_s": 45.0,
+    "source_cross_correlation_limit": 0.01,
+    "elbow_max_abs_deg": 5.0,
+    "joints": {
+        "shoulder": {
+            "status": "locked",
+            "home_pose_deg": 0.0
+        },
+        "gripper": {
+            "status": "locked",
+            "home_pose_deg": 0.0
+        },
+        "base": {
+            "status": "active",
+            "num_sines": 4,
+            "target_amplitude_deg": 60.0,
+            "requested_amplitude_deg": 60.0,
+            "home_offset_deg": 0.0,
+            "raw_peak_before_centering": 2.9607223441089694,
+            "waves": [
+                {
+                    "frequency_hz": 0.08194089611260727,
+                    "phase_rad": 4.850761822005675
+                },
+                {
+                    "frequency_hz": 0.08738545295870723,
+                    "phase_rad": 5.519646759104165
+                },
+                {
+                    "frequency_hz": 0.05419280837384545,
+                    "phase_rad": 5.4155709505061465
+                },
+                {
+                    "frequency_hz": 0.06300903577254661,
+                    "phase_rad": 3.324260444169484
+                }
+            ],
+            "normalization_peak": 2.21130569619108,
+            "velocity_scale_factor": 1.0,
+            "achieved_peak_amplitude_deg": 60.0,
+            "peak_angular_velocity_deg_s": 28.357578979393107,
+            "decorrelation_coefficients": [
+                0.7890906110259671,
+                -0.20060884804990475,
+                -0.002689108720189917
+            ]
+        },
+        "elbow": {
+            "status": "active",
+            "num_sines": 5,
+            "target_amplitude_deg": 4.5,
+            "requested_amplitude_deg": 4.5,
+            "home_offset_deg": 0.0,
+            "raw_peak_before_centering": 3.2432862534369247,
+            "waves": [
+                {
+                    "frequency_hz": 0.0727227755683748,
+                    "phase_rad": 6.132013134078216
+                },
+                {
+                    "frequency_hz": 0.11965999759070896,
+                    "phase_rad": 3.2668405510533898
+                },
+                {
+                    "frequency_hz": 0.0574627591785786,
+                    "phase_rad": 5.11396419564187
+                },
+                {
+                    "frequency_hz": 0.07198095102206266,
+                    "phase_rad": 4.606190464638234
+                },
+                {
+                    "frequency_hz": 0.05707816071753664,
+                    "phase_rad": 4.046081614464034
+                }
+            ],
+            "normalization_peak": 1.9401935072822876,
+            "velocity_scale_factor": 1.0,
+            "achieved_peak_amplitude_deg": 4.5,
+            "peak_angular_velocity_deg_s": 2.5522100806692545,
+            "decorrelation_coefficients": [
+                -0.20060884804990475,
+                0.7655646877629573,
+                0.10936125934879198
+            ]
+        },
+        "wrist": {
+            "status": "active",
+            "num_sines": 3,
+            "target_amplitude_deg": 30.0,
+            "requested_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "raw_peak_before_centering": 2.7812600739283515,
+            "waves": [
+                {
+                    "frequency_hz": 0.11385098031345815,
+                    "phase_rad": 5.5009934536055525
+                },
+                {
+                    "frequency_hz": 0.06620579633740803,
+                    "phase_rad": 2.698813466608226
+                },
+                {
+                    "frequency_hz": 0.09703694084971537,
+                    "phase_rad": 5.909944310362818
+                }
+            ],
+            "normalization_peak": 2.0772962874948506,
+            "velocity_scale_factor": 1.0,
+            "achieved_peak_amplitude_deg": 30.0,
+            "peak_angular_velocity_deg_s": 17.26637575628671,
+            "decorrelation_coefficients": [
+                -0.002689108720189945,
+                0.10936125934879201,
+                0.7911703576716987
+            ]
+        }
+    },
+    "decorrelation": {
+        "method": "symmetric_whitening",
+        "active_joints": [
+            "base",
+            "elbow",
+            "wrist"
+        ],
+        "whitening_matrix": [
+            [
+                0.7890906110259671,
+                -0.20060884804990475,
+                -0.002689108720189917
+            ],
+            [
+                -0.20060884804990475,
+                0.7655646877629573,
+                0.10936125934879198
+            ],
+            [
+                -0.002689108720189945,
+                0.10936125934879201,
+                0.7911703576716987
+            ]
+        ],
+        "cross_correlation_matrix": [
+            [
+                1.0,
+                -8.199671426369176e-16,
+                -6.5377214531080595e-16
+            ],
+            [
+                -8.199671426369176e-16,
+                1.0,
+                8.502128019797661e-16
+            ],
+            [
+                -6.5377214531080595e-16,
+                8.502128019797661e-16,
+                1.0
+            ]
+        ],
+        "maximum_absolute_pairwise_correlation": 8.502128019797661e-16
+    },
+    "elbow_achieved_max_abs_deg": 4.5,
+    "achieved_max_angular_velocity_deg_s": 28.357578979393107
+}

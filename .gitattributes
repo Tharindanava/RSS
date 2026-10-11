@@ -1,0 +1,19 @@
+# Normalise line endings for source and docs
+* text=auto
+*.py text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Recorded data must stay byte-exact (QArm logs, reference CSVs, setup notes)
+Sample_Data/** -text
+*.csv -text
+*.npz binary
+
+# Binary assets
+*.png binary
+*.pdf binary
+
+# Notebooks carry large embedded outputs: keep them out of GitHub's language
+# statistics so the repository is reported as Python rather than Jupyter Notebook
+*.ipynb linguist-documentation

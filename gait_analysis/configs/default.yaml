@@ -1,0 +1,176 @@
+schema_version: 1
+project_root: ../..
+random_seed: 20260907
+
+paths:
+  raw_root: Sample_Data/Human_Motion
+  rss_root: outputs/rss/Human_Motion
+  output_root: outputs/gait_analysis
+  reference_registry: outputs/hma_dashboard_references.json
+
+manifest:
+  raw_glob: "**/*.csv"
+  rss_filename: limb_angle_mode.csv
+  walking_tokens: [walk, walking, gait]
+  excluded_activity_tokens: [sit, stand, sts]
+  checksum_algorithm: sha256
+  sensor_min_finite_fraction: 0.80
+
+sampling:
+  default_hz: 100.0
+
+event_sensors:
+  left:
+    primary: device10_IMU1
+    fallback: device10_IMU3
+  right:
+    primary: device8_IMU1
+    fallback: device8_IMU3
+  channel_aliases:
+    accel: [Accelerometer, Accel]
+    gyro: [Gyroscope, Gyro]
+    axes: [x, y, z]
+
+proxy:
+  signal_label: rss_segment_mode1_proxy
+  orientation_method: stored
+  low_alignment_threshold: 0.35
+  sign_alignment_floor: 0.10
+  # Optional JSON of per-segment semantic axes; read only when orientation_method is semantic_axis_legacy.
+  semantic_axis_profile: null
+  nodes:
+    LH: left_hip_to_knee
+    LK: left_knee_to_ankle
+    LA: left_ankle_to_foot
+    RH: right_hip_to_knee
+    RK: right_knee_to_ankle
+    RA: right_ankle_to_foot
+    LS: left_shoulder_to_elbow
+    LE: left_elbow_to_wrist
+    LW: left_wrist_to_hand
+    RS: right_shoulder_to_elbow
+    RE: right_elbow_to_wrist
+    RW: right_wrist_to_hand
+
+segmentation:
+  filter_order: 4
+  bandpass_hz: [0.5, 6.0]
+  stride_seconds: [0.50, 2.00]
+  normalized_points: 101
+  hilbert_phase_threshold: 0.60
+  valley_prominence_mad: 0.5
+  phase_rotation_bounds: [0.5, 1.5]
+
+classic:
+  symmetry_denominator_epsilon: 1.0e-9
+  mad_scale: 1.4826
+  include_double_support: true
+
+mfpca:
+  nodes: [LH, LK, LA, RH, RK, RA]
+  representation: event_registered
+  channel_weighting: inverse_integrated_variance
+  target_fve: 0.95
+  variance_epsilon: 1.0e-10
+  bootstrap_repetitions: 100
+
+node_fpca:
+  nodes: [LH, LK, LA, RH, RK, RA, LS, LE, LW, RS, RE, RW]
+  representation: event_registered
+  n_eigenfunctions: 2
+  channel_weighting: equal
+  variance_epsilon: 1.0e-10
+  node_weights: {LH: 1.0, LK: 1.0, LA: 1.0, RH: 1.0, RK: 1.0, RA: 1.0,
+                 LS: 1.0, LE: 1.0, LW: 1.0, RS: 1.0, RE: 1.0, RW: 1.0}
+
+transfer_entropy:
+  nodes: [LH, LK, LA, RH, RK, RA, LS, LE, LW, RS, RE, RW]
+  step_pairs_per_window: 8
+  history_source: 1
+  history_target: 1
+  bins: 8
+  delays_samples: [1, 30]
+  pseudocount: 1.0e-12
+  surrogate_method: circular_shift
+  surrogates_development: 100
+  surrogates_final: 200
+  near_zero_shift_samples: 30
+  stride_multiple_exclusion_fraction: 0.10
+  fdr_q: 0.05
+  phase_conditioned: false
+
+phenotype:
+  reference_terrain: flat
+  reference_footwear: "0,0"
+  complete_case: true
+  family_weights:
+    classic: 1.0
+    mfpca: 1.0
+    te: 1.0
+  feature_selection:
+    classic:
+      - stride_duration_seconds
+      - step_duration_seconds
+      - stance_fraction
+      - swing_fraction
+      - cadence_per_min
+      - double_support_fraction
+      - stride_duration_seconds_rcv
+      - stride_symmetry_index
+      - LH_proxy_rom
+      - LK_proxy_rom
+      - LA_proxy_rom
+      - RH_proxy_rom
+      - RK_proxy_rom
+      - RA_proxy_rom
+      - hip_proxy_rom_symmetry_index
+      - knee_proxy_rom_symmetry_index
+      - ankle_proxy_rom_symmetry_index
+    mfpca_prefixes: [mfpca_score_, mfpca_reconstruction_error]
+    te_prefixes: [te_]
+    exclude_suffixes: [_scaled_mad]
+
+scenario_filter:
+  min_subjects_per_scenario: 2
+
+clustering:
+  neighbors: 5
+  candidate_clusters: [2, 3, 4, 5, 6]
+  affinity: local_scale_knn_union
+  min_cluster_trials: 2
+  min_cluster_fraction: 0.05
+  bootstrap_repetitions: 100
+  kmeans_n_init: 20
+  selection_metrics: [eigengap, silhouette, participant_block_ari]
+  analyses:
+    all:   [LH, LK, LA, RH, RK, RA, LS, LE, LW, RS, RE, RW]
+    lower: [LH, LK, LA, RH, RK, RA]
+    upper: [LS, LE, LW, RS, RE, RW]
+  dbscan:
+    embedding_dimensions: 2
+    min_samples: 5
+    metric: euclidean
+    eps_candidate_percentiles: [10, 20, 30, 40, 50, 60, 70, 80, 90]
+    min_cluster_trials: 2
+    min_cluster_fraction: 0.03
+    max_noise_fraction: 0.5
+    selection_metrics: [silhouette, participant_block_ari, noise_quality]
+
+statistics:
+  unit: trial
+  participant_random_intercept: true
+  bootstrap_repetitions: 1000
+  fdr_q: 0.05
+  balance_trials_per_subject: true
+  primary_outcomes:
+    classic: [cadence_per_min, stride_duration_seconds, stance_fraction, swing_fraction]
+    mfpca: [mfpca_score_1]
+    te: [te_density, te_reciprocity, te_upper_lower_balance]
+
+profiles:
+  development:
+    te_surrogates: 100
+    bootstrap_repetitions: 100
+  final:
+    te_surrogates: 200
+    bootstrap_repetitions: 1000

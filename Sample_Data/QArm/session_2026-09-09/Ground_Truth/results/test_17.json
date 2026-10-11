@@ -1,0 +1,102 @@
+{
+    "test_number": 17,
+    "duration_seconds": 30.0,
+    "sample_rate_hz": 100.0,
+    "joints": {
+        "base": {
+            "status": "active",
+            "num_sines": 5,
+            "target_amplitude_deg": 60.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 1.9028032913313848,
+            "waves": [
+                {
+                    "frequency_hz": 0.07792851698655988,
+                    "phase_rad": 4.612866816437239
+                },
+                {
+                    "frequency_hz": 0.08509457882802406,
+                    "phase_rad": 5.083515266653298
+                },
+                {
+                    "frequency_hz": 0.07798063305171457,
+                    "phase_rad": 1.241852949169828
+                },
+                {
+                    "frequency_hz": 0.09630772264111226,
+                    "phase_rad": 4.828535611772093
+                },
+                {
+                    "frequency_hz": 0.07645578779618281,
+                    "phase_rad": 2.381845738544199
+                }
+            ]
+        },
+        "shoulder": {
+            "status": "locked",
+            "home_pose_deg": 0.0
+        },
+        "elbow": {
+            "status": "active",
+            "num_sines": 5,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 3.6673369837205727,
+            "waves": [
+                {
+                    "frequency_hz": 0.0947176874916352,
+                    "phase_rad": 2.1111115267107783
+                },
+                {
+                    "frequency_hz": 0.11672157383847824,
+                    "phase_rad": 3.9340440688010605
+                },
+                {
+                    "frequency_hz": 0.06684932525582928,
+                    "phase_rad": 4.180123457932921
+                },
+                {
+                    "frequency_hz": 0.09110543918076183,
+                    "phase_rad": 3.019309612920696
+                },
+                {
+                    "frequency_hz": 0.10537025350481619,
+                    "phase_rad": 2.5848382579764624
+                }
+            ]
+        },
+        "wrist": {
+            "status": "active",
+            "num_sines": 5,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 3.582086861025082,
+            "waves": [
+                {
+                    "frequency_hz": 0.09036572351665118,
+                    "phase_rad": 0.6775940783089444
+                },
+                {
+                    "frequency_hz": 0.06250198652212613,
+                    "phase_rad": 4.863655961067666
+                },
+                {
+                    "frequency_hz": 0.057644363467899196,
+                    "phase_rad": 1.5333791807406896
+                },
+                {
+                    "frequency_hz": 0.11629113597963153,
+                    "phase_rad": 3.4363636457375857
+                },
+                {
+                    "frequency_hz": 0.07211922375561039,
+                    "phase_rad": 3.9340351072817508
+                }
+            ]
+        },
+        "gripper": {
+            "status": "locked",
+            "home_pose_deg": 45.0
+        }
+    }
+}

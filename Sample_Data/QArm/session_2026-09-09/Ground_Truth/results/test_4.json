@@ -1,0 +1,90 @@
+{
+    "test_number": 4,
+    "duration_seconds": 30.0,
+    "sample_rate_hz": 100.0,
+    "joints": {
+        "base": {
+            "status": "active",
+            "num_sines": 4,
+            "target_amplitude_deg": 60.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 3.4507792622829934,
+            "waves": [
+                {
+                    "frequency_hz": 0.09011451090578615,
+                    "phase_rad": 4.3617028175769175
+                },
+                {
+                    "frequency_hz": 0.09414480242297182,
+                    "phase_rad": 4.018832955453557
+                },
+                {
+                    "frequency_hz": 0.05765525816896465,
+                    "phase_rad": 4.516280671062712
+                },
+                {
+                    "frequency_hz": 0.09897282746678823,
+                    "phase_rad": 2.025335866138014
+                }
+            ]
+        },
+        "shoulder": {
+            "status": "locked",
+            "home_pose_deg": 0.0
+        },
+        "elbow": {
+            "status": "active",
+            "num_sines": 4,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 2.1729729647977667,
+            "waves": [
+                {
+                    "frequency_hz": 0.09702333178417873,
+                    "phase_rad": 4.6836134800357945
+                },
+                {
+                    "frequency_hz": 0.08874281308663029,
+                    "phase_rad": 3.666371940874384
+                },
+                {
+                    "frequency_hz": 0.07338676454110259,
+                    "phase_rad": 2.8417970588882486
+                },
+                {
+                    "frequency_hz": 0.10885877893633006,
+                    "phase_rad": 1.832887776482125
+                }
+            ]
+        },
+        "wrist": {
+            "status": "active",
+            "num_sines": 4,
+            "target_amplitude_deg": 30.0,
+            "home_offset_deg": 0.0,
+            "normalization_peak": 1.7132593064515658,
+            "waves": [
+                {
+                    "frequency_hz": 0.06566804282860807,
+                    "phase_rad": 2.3110258933049432
+                },
+                {
+                    "frequency_hz": 0.08388886086768138,
+                    "phase_rad": 2.0880766991972153
+                },
+                {
+                    "frequency_hz": 0.055244177121211595,
+                    "phase_rad": 1.9579552400924114
+                },
+                {
+                    "frequency_hz": 0.0850885436964166,
+                    "phase_rad": 4.483966592917514
+                }
+            ]
+        },
+        "gripper": {
+            "status": "locked",
+            "home_pose_deg": 45.0
+        }
+    }
+}

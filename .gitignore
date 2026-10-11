@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Generated results (everything the tools write under outputs/ is reproducible)
+outputs/
+notebooks/artifacts/
+qarm_rss_experiments/results/
+
+# Raw recordings: only the QArm set (no human participants) is distributed.
+# Anything else dropped under Sample_Data/ (human gait, weight lifting, your own
+# recordings) stays local. See Sample_Data/README.md.
+Sample_Data/*
+!Sample_Data/README.md
+!Sample_Data/QArm/
+
+# Safety net: video/archive/partial-download files never belong in this repo
+# (GitHub rejects files over 100 MB; recordings may identify participants)
+*.mp4
+*.mov
+*.avi
+*.zip
+*.partial
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+nohup.out

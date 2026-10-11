@@ -1,0 +1,7 @@
+[
+  {
+    "csv_path": "C:/replace/with/your/input.csv",
+    "compute_device": "auto"
+  }
+]
+
