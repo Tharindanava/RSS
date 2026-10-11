@@ -157,7 +157,14 @@ class QArmSignalBankTests(unittest.TestCase):
         persisted_bank = load_signal_bank(DEFAULT_BANK_PATH)
         persisted_manifest = load_manifest(DEFAULT_MANIFEST_PATH)
         for name, expected in self.generated_bank.items():
-            self.assertTrue(np.array_equal(persisted_bank[name], expected), msg=name)
+            persisted = persisted_bank[name]
+            if np.issubdtype(expected.dtype, np.floating):
+                # The bank is regenerated on other platforms/library builds (e.g. CI), where
+                # floating-point results may differ in the last few bits.
+                self.assertEqual(persisted.shape, expected.shape, msg=name)
+                self.assertTrue(np.allclose(persisted, expected, rtol=0.0, atol=1e-9), msg=name)
+            else:
+                self.assertTrue(np.array_equal(persisted, expected), msg=name)
         self.assertEqual(persisted_manifest[0]["signal_number"], "1")
         self.assertEqual(persisted_manifest[-1]["signal_number"], "50")
         self.assertEqual(persisted_manifest[0]["family"], "legacy")
